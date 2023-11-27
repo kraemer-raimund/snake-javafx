@@ -15,6 +15,7 @@ public class SnakeApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Snake");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
