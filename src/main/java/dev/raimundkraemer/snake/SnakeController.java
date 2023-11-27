@@ -1,14 +1,10 @@
 package dev.raimundkraemer.snake;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.canvas.Canvas;
 
 public class SnakeController {
-    @FXML
-    private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
+    Canvas canvas;
 }
