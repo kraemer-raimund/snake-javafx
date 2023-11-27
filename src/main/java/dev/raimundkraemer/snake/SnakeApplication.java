@@ -1,4 +1,4 @@
-package dev.raimundkraemer.snakejavafx;
+package dev.raimundkraemer.snake;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

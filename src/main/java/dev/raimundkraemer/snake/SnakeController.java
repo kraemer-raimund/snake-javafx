@@ -1,4 +1,4 @@
-package dev.raimundkraemer.snakejavafx;
+package dev.raimundkraemer.snake;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

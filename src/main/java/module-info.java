@@ -3,6 +3,6 @@ module dev.raimundkraemer.snakejavafx {
     requires javafx.fxml;
 
 
-    opens dev.raimundkraemer.snakejavafx to javafx.fxml;
-    exports dev.raimundkraemer.snakejavafx;
+    opens dev.raimundkraemer.snake to javafx.fxml;
+    exports dev.raimundkraemer.snake;
 }
