@@ -15,4 +15,14 @@ class SnakeTest {
         assertThatCollection(snake.positions())
                 .isEqualTo(List.of(new Position(0, 0)));
     }
+
+    @Test
+    void initializedSnake_movesUpwards() {
+        final var snake = new Snake(new Position(0, 0));
+
+        snake.tick();
+
+        assertThatCollection(snake.positions())
+                .isEqualTo(List.of(new Position(0, 1)));
+    }
 }
