@@ -6,9 +6,17 @@ import java.util.List;
 public class Snake {
 
     private final ArrayList<Position> positions;
+    private final Bounds bounds;
+    private final Runnable onCollision;
 
     public Snake(Position initialPosition) {
-        this.positions = new ArrayList<>(List.of(initialPosition));
+        this(List.of(initialPosition), Bounds.max(), () -> {});
+    }
+
+    public Snake(List<Position> initialPositions, Bounds bounds, Runnable onCollision) {
+        this.positions = new ArrayList<>(initialPositions);
+        this.bounds = bounds;
+        this.onCollision = onCollision;
     }
 
     public List<Position> positions() {
@@ -21,5 +29,6 @@ public class Snake {
                 oldHeadPosition.x(),
                 oldHeadPosition.y() + 1);
         positions.set(0, newHeadPosition);
+        onCollision.run();
     }
 }
