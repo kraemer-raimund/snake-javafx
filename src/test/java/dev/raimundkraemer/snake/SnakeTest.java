@@ -38,4 +38,16 @@ class SnakeTest {
 
         verify(onCollision, times(1)).run();
     }
+
+    @Test
+    void snakePlacedDistantFromWall_doesNotCollideWithWallOnTick() {
+        final var initialPositions = List.of(new Position(13, 37));
+        final var bounds = new Bounds(-1000, -1000, 1000, 1000);
+        final var onCollision = mock(Runnable.class);
+        final var snake = new Snake(initialPositions, bounds, onCollision);
+
+        snake.tick();
+
+        verify(onCollision, never()).run();
+    }
 }

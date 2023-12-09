@@ -24,11 +24,22 @@ public class Snake {
     }
 
     public void tick() {
-        final var oldHeadPosition = positions.getFirst();
-        final var newHeadPosition = new Position(
-                oldHeadPosition.x(),
-                oldHeadPosition.y() + 1);
-        positions.set(0, newHeadPosition);
-        onCollision.run();
+        if (stepWouldCollide()) {
+            onCollision.run();
+        } else {
+            step();
+        }
+    }
+
+    private boolean stepWouldCollide() {
+        final var oldHead = positions.getFirst();
+        final var newHead = new Position(oldHead.x(), oldHead.y() + 1);
+        return newHead.y() > bounds.top();
+    }
+
+    private void step() {
+        final var oldHead = positions.getFirst();
+        final var newHead = new Position(oldHead.x(), oldHead.y() + 1);
+        positions.set(0, newHead);
     }
 }
