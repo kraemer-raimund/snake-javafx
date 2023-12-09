@@ -31,6 +31,10 @@ public class Snake {
         }
     }
 
+    public void grow() {
+        positions.add(positions.getFirst());
+    }
+
     private boolean stepWouldCollide() {
         final var oldHead = positions.getFirst();
         final var newHead = new Position(oldHead.x(), oldHead.y() + 1);

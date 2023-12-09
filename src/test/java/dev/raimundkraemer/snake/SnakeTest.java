@@ -50,4 +50,17 @@ class SnakeTest {
 
         verify(onCollision, never()).run();
     }
+
+    @Test
+    void snakeGrowsOnNextTick() {
+        final var snake = new Snake(new Position(5, 5));
+
+        snake.grow();
+        snake.tick();
+
+        assertThatCollection(snake.positions())
+                .isEqualTo(List.of(
+                        new Position(5, 6),
+                        new Position(5, 5)));
+    }
 }
