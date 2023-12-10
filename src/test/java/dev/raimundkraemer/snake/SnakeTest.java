@@ -55,7 +55,7 @@ class SnakeTest {
     void snakeGrowsOnNextTick() {
         final var snake = new Snake(new Position(5, 5));
 
-        snake.grow();
+        snake.growOnNextTick();
         snake.tick();
 
         assertThatCollection(snake.positions())

@@ -31,7 +31,7 @@ public class Snake {
         }
     }
 
-    public void grow() {
+    public void growOnNextTick() {
         positions.add(positions.getFirst());
     }
 
