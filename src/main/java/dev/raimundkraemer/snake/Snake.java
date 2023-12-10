@@ -9,6 +9,8 @@ public class Snake {
     private final Bounds bounds;
     private final Runnable onCollision;
 
+    private boolean growOnNextTick;
+
     public Snake(Position initialPosition) {
         this(List.of(initialPosition), Bounds.max(), () -> {});
     }
@@ -26,19 +28,28 @@ public class Snake {
     public void tick() {
         if (stepWouldCollide()) {
             onCollision.run();
+        } else if (growOnNextTick) {
+            stepAndGrow();
         } else {
             step();
         }
     }
 
     public void growOnNextTick() {
-        positions.add(positions.getFirst());
+        growOnNextTick = true;
     }
 
     private boolean stepWouldCollide() {
         final var oldHead = positions.getFirst();
         final var newHead = new Position(oldHead.x(), oldHead.y() + 1);
         return newHead.y() > bounds.top();
+    }
+
+    private void stepAndGrow() {
+        final var oldHead = positions.getFirst();
+        final var newHead = new Position(oldHead.x(), oldHead.y() + 1);
+        positions.set(0, newHead);
+        positions.add(oldHead);
     }
 
     private void step() {

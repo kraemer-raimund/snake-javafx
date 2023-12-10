@@ -63,4 +63,15 @@ class SnakeTest {
                         new Position(5, 6),
                         new Position(5, 5)));
     }
+
+    @Test
+    void snakeDoesNotGrowOnSameTick() {
+        final var snake = new Snake(new Position(5, 5));
+
+        snake.growOnNextTick();
+
+        assertThatCollection(snake.positions())
+                .isEqualTo(List.of(
+                        new Position(5, 5)));
+    }
 }
