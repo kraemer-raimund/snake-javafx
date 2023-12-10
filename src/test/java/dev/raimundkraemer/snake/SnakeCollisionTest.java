@@ -9,7 +9,7 @@ import static org.mockito.Mockito.*;
 public class SnakeCollisionTest {
 
     @Test
-    void snakePlacedNextToWall_collidesWithWallOnTick() {
+    void nextToWall_collisionOnTick() {
         final var initialPositions = List.of(new Position(2, 5));
         final var bounds = new Bounds(-5, -5, 5, 5);
         final var onCollision = mock(Runnable.class);
@@ -21,7 +21,7 @@ public class SnakeCollisionTest {
     }
 
     @Test
-    void snakePlacedDistantFromWall_doesNotCollideWithWallOnTick() {
+    void distantFromWall_noCollisionOnTick() {
         final var initialPositions = List.of(new Position(13, 37));
         final var bounds = new Bounds(-1000, -1000, 1000, 1000);
         final var onCollision = mock(Runnable.class);

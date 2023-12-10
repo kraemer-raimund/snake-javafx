@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatCollection;
 public class SnakeGrowthTest {
 
     @Test
-    void snakeGrowsOnNextTick() {
+    void segmentIsAddedOnNextTick() {
         final var snake = new Snake(new Position(5, 5));
 
         snake.growOnNextTick();
@@ -22,7 +22,7 @@ public class SnakeGrowthTest {
     }
 
     @Test
-    void snakeDoesNotGrowOnSameTick() {
+    void segmentIsNotAddedOnCurrentTick() {
         final var snake = new Snake(new Position(5, 5));
 
         snake.growOnNextTick();
