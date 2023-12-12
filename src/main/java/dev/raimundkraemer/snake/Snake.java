@@ -46,27 +46,20 @@ public class Snake {
 
     private boolean stepWouldCollide() {
         final var oldHead = positions.getFirst();
-        final var newHead = nextPosition(oldHead, direction);
+        final var newHead = oldHead.nextPosition(direction);
         return newHead.y() > bounds.top();
     }
 
     private void stepAndGrow() {
         final var oldHead = positions.getFirst();
-        final var newHead = nextPosition(oldHead, direction);
+        final var newHead = oldHead.nextPosition(direction);
         positions.set(0, newHead);
         positions.add(oldHead);
     }
 
     private void step() {
         final var oldHead = positions.getFirst();
-        final var newHead = nextPosition(oldHead, direction);
+        final var newHead = oldHead.nextPosition(direction);
         positions.set(0, newHead);
-    }
-
-    private Position nextPosition(Position current, Direction direction) {
-        return switch (direction) {
-            case LEFT -> new Position(current.x() - 1, current.y());
-            case UP -> new Position(current.x(), current.y() + 1);
-        };
     }
 }
