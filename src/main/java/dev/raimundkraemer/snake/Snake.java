@@ -9,6 +9,7 @@ public class Snake {
     private final Bounds bounds;
     private final Runnable onCollision;
 
+    private Direction direction = Direction.UP;
     private boolean growOnNextTick;
 
     public Snake(Position initialPosition) {
@@ -35,26 +36,37 @@ public class Snake {
         }
     }
 
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
     public void growOnNextTick() {
         growOnNextTick = true;
     }
 
     private boolean stepWouldCollide() {
         final var oldHead = positions.getFirst();
-        final var newHead = new Position(oldHead.x(), oldHead.y() + 1);
+        final var newHead = nextPosition(oldHead, direction);
         return newHead.y() > bounds.top();
     }
 
     private void stepAndGrow() {
         final var oldHead = positions.getFirst();
-        final var newHead = new Position(oldHead.x(), oldHead.y() + 1);
+        final var newHead = nextPosition(oldHead, direction);
         positions.set(0, newHead);
         positions.add(oldHead);
     }
 
     private void step() {
         final var oldHead = positions.getFirst();
-        final var newHead = new Position(oldHead.x(), oldHead.y() + 1);
+        final var newHead = nextPosition(oldHead, direction);
         positions.set(0, newHead);
+    }
+
+    private Position nextPosition(Position current, Direction direction) {
+        return switch (direction) {
+            case LEFT -> new Position(current.x() - 1, current.y());
+            case UP -> new Position(current.x(), current.y() + 1);
+        };
     }
 }

@@ -25,4 +25,15 @@ public class SnakeMovementTest {
         assertThatCollection(snake.positions())
                 .isEqualTo(List.of(new Position(0, 1)));
     }
+
+    @Test
+    void whenSettingDirectionToLeft_snakeMovesLeft() {
+        final var snake = new Snake(new Position(0, 0));
+        
+        snake.setDirection(Direction.LEFT);
+        snake.tick();
+
+        assertThatCollection(snake.positions())
+                .isEqualTo(List.of(new Position(-1, 0)));
+    }
 }
