@@ -53,8 +53,7 @@ public class Snake {
     private void stepAndGrow() {
         final var oldHead = positions.getFirst();
         final var newHead = oldHead.nextPosition(direction);
-        positions.set(0, newHead);
-        positions.add(oldHead);
+        positions.addFirst(newHead);
     }
 
     private void step() {

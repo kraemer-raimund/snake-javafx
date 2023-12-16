@@ -31,4 +31,23 @@ public class SnakeGrowthTest {
                 .isEqualTo(List.of(
                         new Position(5, 5)));
     }
+
+    @Test
+    void multiSegmentSnake_growsTailWhileMovingTheRestForward() {
+        final var snake = new Snake(
+                new Position(0, 0),
+                new Position(0, -1),
+                new Position(0, -2));
+
+        snake.setDirection(Direction.UP);
+        snake.growOnNextTick();
+        snake.tick();
+
+        assertThatCollection(snake.positions())
+                .isEqualTo(List.of(
+                        new Position(0, 1),
+                        new Position(0, 0),
+                        new Position(0, -1),
+                        new Position(0, -2)));
+    }
 }
