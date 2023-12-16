@@ -12,7 +12,7 @@ public class Snake {
     private Direction direction = Direction.UP;
     private boolean growOnNextTick;
 
-    public Snake(Position initialPosition) {
+    public Snake(Position... initialPosition) {
         this(List.of(initialPosition), Bounds.max(), () -> {});
     }
 
@@ -60,6 +60,7 @@ public class Snake {
     private void step() {
         final var oldHead = positions.getFirst();
         final var newHead = oldHead.nextPosition(direction);
-        positions.set(0, newHead);
+        positions.addFirst(newHead);
+        positions.removeLast();
     }
 }
