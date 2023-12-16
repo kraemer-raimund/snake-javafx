@@ -39,7 +39,7 @@ public class SnakeGrowthTest {
                 new Position(0, -1),
                 new Position(0, -2));
 
-        snake.setDirection(Direction.UP);
+        snake.requestDirection(Direction.UP);
         snake.growOnNextTick();
         snake.tick();
 

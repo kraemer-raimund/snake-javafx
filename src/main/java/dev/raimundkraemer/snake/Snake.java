@@ -36,8 +36,27 @@ public class Snake {
         }
     }
 
-    public void setDirection(Direction direction) {
-        this.direction = direction;
+    public void requestDirection(Direction direction) {
+        if (isDirectionChangeAllowed(direction)) {
+            this.direction = direction;
+        }
+    }
+
+    private boolean isDirectionChangeAllowed(Direction direction) {
+        if (positions().size() == 1) {
+            // A single-segment snake can change to any direction.
+            return true;
+        }
+
+        // A multi-segment snake can not move "backwards" where the head segment would need
+        // to move to the position occupied by the second segment.
+        // E.g., the snake can not move down if the second segment is below the snake's head.
+        final var head = positions.get(0);
+        final var secondSegment = positions.get(1);
+        return switch (direction) {
+            case DOWN -> head.y() <= secondSegment.y();
+            default -> true;
+        };
     }
 
     public void growOnNextTick() {
