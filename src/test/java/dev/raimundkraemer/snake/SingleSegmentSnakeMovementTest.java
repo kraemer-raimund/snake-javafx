@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatCollection;
 public class SingleSegmentSnakeMovementTest {
 
     @Test
-    void initializedSnake_providesCorrectPosition() {
+    void providesCorrectInitialPosition() {
         final var snake = new Snake(new Position(0, 0));
 
         assertThatCollection(snake.positions())
@@ -17,7 +17,7 @@ public class SingleSegmentSnakeMovementTest {
     }
 
     @Test
-    void initializedSnake_movesUpwards() {
+    void movesUpwardsInitially() {
         final var snake = new Snake(new Position(0, 0));
 
         snake.tick();
@@ -27,7 +27,7 @@ public class SingleSegmentSnakeMovementTest {
     }
 
     @Test
-    void whenSettingDirectionToLeft_snakeMovesLeft() {
+    void movesLeftIfDirectionSetToLeft() {
         final var snake = new Snake(new Position(0, 0));
 
         snake.requestDirection(Direction.LEFT);
